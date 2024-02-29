@@ -116,13 +116,13 @@ import {
             expect(await useString.someUint()).to.equal(testString.lastIndexOf("World!"));
         });
 
-        it("Check slice(0, 4)", async function () {
+        it("Check slice(0, -4)", async function () {
             const useString = await loadFixture(deployUseString);
 
-            let tx = await useString.setSlice(testString, 0, 4);
+            let tx = await useString.setSlice(testString, 0, -4);
             tx.wait();
             
-            expect(await useString.someString()).to.equal(testString.slice(0, 4));
+            expect(await useString.someString()).to.equal(testString.slice(0, -4));
         });
 
         it("Check split(' ')", async function () {
