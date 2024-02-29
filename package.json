@@ -1,0 +1,39 @@
+{
+  "name": "@tw3/solidity",
+  "version": "0.0.2",
+  "description": "Solidity smart contract utilities, token standards and other useful libraries and templates for your web3 development needs.",
+  "main": "index.js",
+  "scripts": {
+    "test": "hardhat test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TechnicallyWeb3/tw3-solidity.git"
+  },
+  "keywords": [
+    "web3",
+    "solidity",
+    "smart",
+    "contract",
+    "smart",
+    "contracts",
+    "tw3",
+    "technicallyweb3",
+    "sol",
+    "evm",
+    "ethereum",
+    "string",
+    "tools"
+  ],
+  "author": "@TechnicallyWeb3",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/TechnicallyWeb3/tw3-solidity/issues"
+  },
+  "homepage": "https://github.com/TechnicallyWeb3/tw3-solidity#readme",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^4.0.0",
+    "dotenv": "^16.4.5",
+    "hardhat": "^2.20.1"
+  }
+}
