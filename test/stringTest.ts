@@ -24,6 +24,8 @@ import {
             let tx = await useString.setString(testString);
             await tx.wait();
 
+            let response = await useString.someString();
+            console.log("        ", response);
             expect(await useString.someString()).to.equal(testString);
 
         });
@@ -33,6 +35,8 @@ import {
             let tx = await useString.setLowerCaseString(testString);
             tx.wait();
 
+            let response = await useString.someString();
+            console.log("        ", response);
             expect(await useString.someString()).to.equal(testString.toLowerCase());
         });
         it("Check string toUpperCase()", async function () {
@@ -41,6 +45,8 @@ import {
             let tx = await useString.setUpperCaseString(testString);
             tx.wait();
 
+            let response = await useString.someString();
+            console.log("        ", response);
             expect(await useString.someString()).to.equal(testString.toUpperCase());
         });
 
@@ -50,6 +56,8 @@ import {
             let tx = await useString.setLength(testString);
             tx.wait();
 
+            let response = await useString.someUint();
+            console.log("        ", response);
             expect(await useString.someUint()).to.equal(testString.length);
         });
 
@@ -59,6 +67,8 @@ import {
             let tx = await useString.setCharAt(testString, 1);
             tx.wait();
 
+            let response = await useString.someString();
+            console.log("        ", response);
             expect(await useString.someString()).to.equal(testString.charAt(1));
         });
 
@@ -68,6 +78,8 @@ import {
             let tx = await useString.setStartsWith(testString, testString.slice(0, 3));
             tx.wait();
 
+            let response = await useString.someBool();
+            console.log("        ", response);
             expect(await useString.someBool()).to.equal(true);
         });
 
@@ -77,6 +89,8 @@ import {
             let tx = await useString.setEndsWith(testString, testString.slice(-4));
             tx.wait();
 
+            let response = await useString.someBool();
+            console.log("        ", response);
             expect(await useString.someBool()).to.equal(true);
         });
 
@@ -86,6 +100,8 @@ import {
             let tx = await useString.setIncludes(testString, "World!");
             tx.wait();
 
+            let response = await useString.someBool();
+            console.log("        ", response);
             expect(await useString.someBool()).to.equal(true);
         });
 
@@ -95,6 +111,8 @@ import {
             let tx = await useString.setEquals(testString, "Hello World!");
             tx.wait();
 
+            let response = await useString.someBool();
+            console.log("        ", response);
             expect(await useString.someBool()).to.equal(true);
         });
 
@@ -104,6 +122,8 @@ import {
             let tx = await useString.setIndexOf(testString, "l");
             tx.wait();
             
+            let response = await useString.someUint();
+            console.log("        ", response);
             expect(await useString.someUint()).to.equal(testString.indexOf("l"));
         });
 
@@ -113,6 +133,8 @@ import {
             let tx = await useString.setLastIndexOf(testString, "World!");
             tx.wait();
             
+            let response = await useString.someUint();
+            console.log("        ", response);
             expect(await useString.someUint()).to.equal(testString.lastIndexOf("World!"));
         });
 
@@ -122,16 +144,20 @@ import {
             let tx = await useString.setSlice(testString, 0, -4);
             tx.wait();
             
+            let response = await useString.someString();
+            console.log("        ", response);
             expect(await useString.someString()).to.equal(testString.slice(0, -4));
         });
 
-        it("Check split(' ')", async function () {
+        it("Check split('o') index 0", async function () {
             const useString = await loadFixture(deployUseString);
 
-            let tx = await useString.setSplit(testString, " ");
+            let tx = await useString.setSplit(testString, "o");
             tx.wait();
             
-            expect(await useString.someStringArray(0)).to.equal(testString.split(" ")[0]);
+            let response = await useString.someStringArray(0);
+            console.log("        ", response);
+            expect(await useString.someStringArray(0)).to.equal(testString.split("o")[0]);
         });
 
     });
