@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-// TechnicallyWeb3[utils/String.sol].v=0.0.1
+// TechnicallyWeb3[utils/String.sol] Updated version 0.0.5
 
 pragma solidity ^0.8.20;
 
