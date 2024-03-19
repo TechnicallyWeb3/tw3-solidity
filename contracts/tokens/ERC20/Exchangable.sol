@@ -1,4 +1,5 @@
 // SPDX-License-Identifier: MIT
+// TechnicallyWeb3[tokens/ERC20/Exchangable.sol] Updated version 0.0.8
 pragma solidity ^0.8.20;
 
 import "./Base.sol";
@@ -81,7 +82,7 @@ abstract contract ExchangableERC20 is ERC20 {
      * @return The calculated value of Ethereum coins (Ether) to be transferred.
      */
     function _getCoinValue(uint256 amount) internal virtual returns (uint256) {
-        return amount / rateValue / (10 ** rateDecimal);
+        return amount / rateValue * (10 ** rateDecimal);
     }
 
     /**

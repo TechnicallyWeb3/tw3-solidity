@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-// TechnicallyWeb3[tokens/ERC20/Base.sol] Updated version 0.0.5
+// TechnicallyWeb3[tokens/ERC20/Base.sol] Updated version 0.0.8
 pragma solidity ^0.8.20;
 
 import "./Base.sol";
