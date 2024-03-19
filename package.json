@@ -1,6 +1,6 @@
 {
   "name": "@tw3/solidity",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Solidity smart contract utilities, token standards and other useful libraries and templates for your web3 development needs.",
   "main": "index.js",
   "scripts": {

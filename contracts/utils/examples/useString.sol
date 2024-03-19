@@ -64,5 +64,11 @@ contract ExampleString {
     function setSplit(string memory _string, string memory _delimiter) external {
         someStringArray = _string.split(_delimiter);
     }
+
+    function testAfterLowerCase(string memory _string) external {
+        string memory someNewString = _string.toLowerCase();
+        someNewString;
+        someString = _string;
+    }
     
 }

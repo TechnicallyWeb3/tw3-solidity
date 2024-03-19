@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-// TechnicallyWeb3[utils/Bytes.sol] Updated version 0.0.5
+// TechnicallyWeb3[utils/Bytes.sol] Updated version 0.0.7
 
 pragma solidity ^0.8.20;
 
@@ -8,6 +8,16 @@ pragma solidity ^0.8.20;
  * @dev Utilities for working with bytes in Solidity
  */
 library Bytes {
+
+    function copyBytes(bytes memory inputBytes) private pure returns (bytes memory) {
+        bytes memory copy = new bytes(inputBytes.length);
+        uint256 max = inputBytes.length + 31;
+        for (uint256 i=32; i<=max; i+=32)
+        {
+            assembly { mstore(add(copy, i), mload(add(inputBytes, i))) }
+        }
+        return copy;
+    }
 
     /**
      * @dev Checks if the input bytes start with the specified prefix.
@@ -199,6 +209,7 @@ library Bytes {
      * @return The input bytes converted to lowercase.
      */
     function toLowerCase(bytes memory inputBytes) internal pure returns (bytes memory) {
+        bytes memory outputBytes = copyBytes(inputBytes);
         for (uint256 i; i < inputBytes.length; i++) {
             // Check uppercase
             if (
@@ -207,11 +218,11 @@ library Bytes {
             ) {
                 // Add 32 to make it lowercase
                 unchecked {
-                    inputBytes[i] = bytes1(uint8(inputBytes[i]) + 32);
+                    outputBytes[i] = bytes1(uint8(inputBytes[i]) + 32);
                 }
             }
         }
-        return inputBytes;
+        return outputBytes;
     }
 
     /**
@@ -220,6 +231,7 @@ library Bytes {
      * @return The input bytes converted to uppercase.
      */
     function toUpperCase(bytes memory inputBytes) internal pure returns (bytes memory) {
+        bytes memory outputBytes = copyBytes(inputBytes);
         for (uint256 i; i < inputBytes.length; i++) {
             // Check lowercase
             if (
@@ -228,10 +240,10 @@ library Bytes {
             ) {
                 // Subtract 32 to make it uppercase
                 unchecked {
-                    inputBytes[i] = bytes1(uint8(inputBytes[i]) - 32);
+                    outputBytes[i] = bytes1(uint8(inputBytes[i]) - 32);
                 }
             }
         }
-        return inputBytes;
+        return outputBytes;
     }
 }

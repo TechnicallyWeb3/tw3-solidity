@@ -94,15 +94,15 @@ import {
             expect(await useString.someBool()).to.equal(true);
         });
 
-        it("Check includes('World!')", async function () {
+        it("Check !includes('@')", async function () {
             const useString = await loadFixture(deployUseString);
 
-            let tx = await useString.setIncludes(testString, "World!");
+            let tx = await useString.setIncludes(testString, "@");
             tx.wait();
 
             let response = await useString.someBool();
-            console.log("        ", response);
-            expect(await useString.someBool()).to.equal(true);
+            console.log("        -", response);
+            expect(await useString.someBool()).to.equal(false);
         });
 
         it("Check equals('Hello World!')", async function () {
@@ -158,6 +158,17 @@ import {
             let response = await useString.someStringArray(0);
             console.log("        ", response);
             expect(await useString.someStringArray(0)).to.equal(testString.split("o")[0]);
+        });
+
+        it("Check input after toLowerCase", async function () {
+            const useString = await loadFixture(deployUseString);
+
+            let tx = await useString.testAfterLowerCase(testString);
+            tx.wait();
+            
+            let response = await useString.someString();
+            console.log("        ", response);
+            expect(await useString.someString()).to.equal(testString);
         });
 
     });

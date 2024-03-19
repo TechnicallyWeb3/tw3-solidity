@@ -8,4 +8,6 @@ import "../Float.sol";
 contract ExampleFloat {
     using Float for float;
 
+    
+
 }

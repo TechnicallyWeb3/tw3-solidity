@@ -12,6 +12,6 @@ contract ExampleArray {
     bytes[] public someBytesArray;
 
     function pushUint256Array(uint256[] memory _memoryArray, uint256 _data) external {
-        someUintArray = _memoryArray.push();
+        someUintArray = _memoryArray.push(_data);
     }
 }
