@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-// TechnicallyWeb3[tokens/ERC20/Exchangable.sol] Updated version 0.0.8
+// TechnicallyWeb3[tokens/ERC20/Exchangable.sol] Updated version 0.0.10
 pragma solidity ^0.8.20;
 
 import "./Base.sol";
@@ -11,8 +11,8 @@ import "./Base.sol";
  */
 abstract contract ExchangableERC20 is ERC20 {
     // Exchange rate parameters
-    uint256 public rateValue; // The value of 1 token in terms of coins (Ether)
-    uint256 public rateDecimal; // The decimal precision of the exchange rate
+    uint256 private rateValue; // The value of 1 token in terms of coins (Ether)
+    uint256 private rateDecimal; // The decimal precision of the exchange rate
 
     /**
      * @dev Constructor to initialize the contract with a given name, symbol, exchange rate value, and decimal precision.
@@ -82,7 +82,21 @@ abstract contract ExchangableERC20 is ERC20 {
      * @return The calculated value of Ethereum coins (Ether) to be transferred.
      */
     function _getCoinValue(uint256 amount) internal virtual returns (uint256) {
-        return amount / rateValue * (10 ** rateDecimal);
+        // returns 0 if rateValue is 0 to prevent divide by 0 error.
+        return rateValue == 0 ? 0 : amount / rateValue * (10 ** rateDecimal);
+    }
+
+    /**
+     * @dev Sets the exchange rate value and decimal precision.
+     * @param value The new exchange rate value.
+     * @param decimal The decimal precision for the exchange rate.
+     * @notice This function is internal and virtual, allowing derived contracts to customize rate setting logic.
+     * @dev It updates the `rateValue` and `rateDecimal` variables with the provided values.
+     * @dev This function should be overridden in derived contracts if specific rate-setting behavior is required.
+     */
+    function _setRate(uint256 value, uint8 decimal) internal virtual {
+        rateValue = value;
+        rateDecimal = decimal;
     }
 
     /**
