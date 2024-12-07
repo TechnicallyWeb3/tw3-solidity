@@ -14,7 +14,6 @@ abstract contract WTTPPermissions is AccessControl {
         _grantRole(DEFAULT_ADMIN_ROLE, _owner);
         _grantRole(OWNER_ROLE, _owner);
         _setRoleAdmin(SITE_ADMIN_ROLE, OWNER_ROLE);
-        _grantRole(SITE_ADMIN_ROLE, msg.sender);
         _grantRole(SITE_ADMIN_ROLE, _owner);
     }
 
@@ -448,15 +447,15 @@ abstract contract WTTPSite is WTTPStorage {
             });
         }
         // 400 codes
-        else if (_dataPoints.length == 0) {
-            head.responseLine = ResponseLine({
-                protocol: requestLine.protocol,
-                code: 404
-            });
-        } else if (!_methodAllowed(_path, Method.HEAD)) {
+        else if (!_methodAllowed(_path, Method.HEAD)) {
             head.responseLine = ResponseLine({
                 protocol: requestLine.protocol,
                 code: 405
+            });
+        } else if (_dataPoints.length == 0) {
+            head.responseLine = ResponseLine({
+                protocol: requestLine.protocol,
+                code: 404
             });
         } 
         // 300 codes
