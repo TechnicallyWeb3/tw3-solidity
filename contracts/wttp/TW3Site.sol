@@ -9,7 +9,7 @@ abstract contract TW3Site is WTTPSite {
     string public description;
     string public tags;
 
-    address TW3_DPR_ = 0x5d32C19033A602D936221237ACdc6A7e7135D724;
+    address TW3_DPR_ = 0x9885FF0546C921EFb19b1C8a2E10777A9dAc8e88;
 
     constructor (
         string memory _name, 
